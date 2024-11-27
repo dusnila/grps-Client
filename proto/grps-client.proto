@@ -1,3 +1,53 @@
-//инициальзация клиента
+syntax = "proto3";
 
-//первый коммит
+package client;
+
+option go_package = "dusnila.client.v1;clientv1";
+
+service WorkBD {
+  rpc Post (PostRequest) returns (PostResponse);
+  rpc Put (PutRequest) returns (PutResponse);
+  rpc Delete (DeleteRequest) returns (DeleteResponse);
+  rpc Get (GetRequest) returns (GetResponse);
+}
+
+message PostRequest {
+  string name = 1;
+  int64 price = 2;
+}
+
+message PostResponse {
+  string statusCode = 1;
+  string id = 2;
+}
+
+message PutRequest {
+  int64 id = 1;
+  string name =2;
+  string price =3;
+}
+
+message PutResponse {
+  int64 statusCode = 1;
+}
+
+message DeleteRequest {
+  int64 id = 1;
+}
+
+message DeleteResponse {
+  int64 statusCode = 1;
+}
+
+message GetRequest {}
+
+message Product {
+  int64 id = 1;
+  string name = 2;
+  int64 price = 3;
+}
+
+message GetResponse {
+  repeated Product product = 1;
+  int32 total_count = 2;
+}
